@@ -1,16 +1,14 @@
 from django.db import models
 from django.utils import timezone
 
-from shortener.utils import create_shortened_url
+from shortener.utils import create_shortened_url, default_expiration_date
 
 
 class Shortener(models.Model):
     original_url = models.CharField(max_length=255, unique=True)
     short_url = models.CharField(max_length=6, unique=True, blank=True)
-    publishing_date = models.DateTimeField(
-        default=timezone.now,
-        blank=True,
-    )
+    publishing_date = models.DateField(auto_now_add=True)
+    expiration_date = models.DateField(default=default_expiration_date())
 
     def save(
         self,

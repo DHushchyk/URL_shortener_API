@@ -1,4 +1,5 @@
 from random import choice
+from datetime import timedelta, date
 
 from string import ascii_letters, digits
 
@@ -26,3 +27,8 @@ def create_shortened_url(model_instance):
         return create_shortened_url(model_instance)
 
     return shortened_url
+
+
+def default_expiration_date():
+
+    return date.today() + timedelta(days=90)
