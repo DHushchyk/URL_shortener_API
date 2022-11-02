@@ -24,6 +24,11 @@ def create_sample_link(client, url=ORIGINAL_URL_SAMPLE, expiration_date=""):
     return client.post(LINKS_URL, payload)
 
 
+def get_detail_url(link):
+    link_id = link.data["id"]
+    return f"{LINKS_URL}{link_id}/"
+
+
 class ShortenerAPITest(TestCase):
     def setUp(self):
         self.client = APIClient()
@@ -62,6 +67,16 @@ class ShortenerAPITest(TestCase):
 
         links = Shortener.objects.all()
         serializer = ShortenerSerializer(links, many=True)
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.data, serializer.data)
+
+    def test_link_detail(self):
+        link = create_sample_link(self.client)
+        res = self.client.get(get_detail_url(link))
+
+        link_from_db = Shortener.objects.get(id=link.data["id"])
+        serializer = ShortenerSerializer(link_from_db)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
