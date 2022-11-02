@@ -3,16 +3,9 @@ from rest_framework import serializers
 from shortener.models import Shortener
 
 
-class ShortenerListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Shortener
-        fields = "__all__"
-
-
-class ShortenerCreateLinkSerializer(serializers.ModelSerializer):
+class ShortenerSerializer(serializers.ModelSerializer):
     short_url = serializers.CharField(read_only=True)
-    publishing_date = serializers.DateTimeField(read_only=True)
+    publishing_date = serializers.DateField(read_only=True)
 
     class Meta:
         model = Shortener

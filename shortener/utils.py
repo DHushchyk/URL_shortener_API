@@ -1,7 +1,11 @@
 from random import choice
-from datetime import timedelta, date
+
 
 from string import ascii_letters, digits
+
+from django.contrib.sites.shortcuts import get_current_site
+
+from shortener.models import Shortener
 
 SIZE = 6
 
@@ -14,21 +18,21 @@ def create_random_code(chars=AVAILABLE_CHARS):
     return "".join([choice(chars) for _ in range(SIZE)])
 
 
-def create_shortened_url(model_instance):
-    """Creates a shortened url and checks if it is unique"""
+def create_short_part():
+    """Creates a shortened part of url and checks if it is unique"""
 
-    shortened_part = create_random_code()
-    shortened_url = f"https://sh-url/{shortened_part}"
+    short_part = create_random_code()
 
-    model_class = model_instance.__class__
+    if Shortener.objects.filter(short_part=short_part).exists():
 
-    if model_class.objects.filter(short_url=shortened_url).exists():
+        return create_short_part()
 
-        return create_shortened_url(model_instance)
-
-    return shortened_url
+    return short_part
 
 
-def default_expiration_date():
+def create_short_url(short_part, request):
+    """Creates a short url"""
 
-    return date.today() + timedelta(days=90)
+    current_site = get_current_site(request)
+
+    return f"http://{current_site}/{short_part}"
