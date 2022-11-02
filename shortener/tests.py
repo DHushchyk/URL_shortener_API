@@ -50,8 +50,14 @@ class ShortenerAPITest(TestCase):
             self.client, expiration_date=datetime.date(2023, 11, 12)
         )
 
-        self.assertEqual(res_first_date.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(res_second_date.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(
+            res_first_date.status_code,
+            status.HTTP_400_BAD_REQUEST
+        )
+        self.assertEqual(
+            res_second_date.status_code,
+            status.HTTP_400_BAD_REQUEST
+        )
 
     def test_link_list(self):
         create_sample_link(self.client)

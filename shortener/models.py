@@ -4,8 +4,8 @@ import datetime
 
 from rest_framework.exceptions import ValidationError
 
-MIN_EXPIRATION_DATE = datetime.date.today() + datetime.timedelta(days=1)
-MAX_EXPIRATION_DATE = datetime.date.today() + datetime.timedelta(days=365)
+MIN_EXP_DATE = datetime.date.today() + datetime.timedelta(days=1)
+MAX_EXP_DATE = datetime.date.today() + datetime.timedelta(days=365)
 
 
 def default_expiration_date():
@@ -20,17 +20,21 @@ class Shortener(models.Model):
     expiration_date = models.DateField(default=default_expiration_date)
 
     def clean(self):
-        if not MIN_EXPIRATION_DATE < self.expiration_date < MAX_EXPIRATION_DATE:
+        if not MIN_EXP_DATE <= self.expiration_date < MAX_EXP_DATE:
             raise ValidationError(
                 {
                     "expiration_date": f"date must be in range "
-                    f"{str(MIN_EXPIRATION_DATE)}-"
-                    f"{MAX_EXPIRATION_DATE}."
+                    f"{str(MIN_EXP_DATE)}-"
+                    f"{MAX_EXP_DATE}."
                 }
             )
 
     def save(
-        self, force_insert=False, force_update=False, using=None, update_fields=None
+        self,
+        force_insert=False,
+        force_update=False,
+        using=None,
+        update_fields=None
     ):
         self.full_clean()
         return super(Shortener, self).save(
