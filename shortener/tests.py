@@ -88,3 +88,14 @@ class ShortenerAPITest(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_302_FOUND)
 
+    @mock.patch("shortener.views.datetime", wraps=datetime)
+    def test_redirect_expired_short_link(self, mock_datetime):
+        mock_datetime.date.today.return_value = datetime.date(2023, 1, 2)
+        link = create_sample_link(
+            self.client,
+            expiration_date=datetime.date(2023, 1, 1)
+        )
+        redirect_link = link.data["short_url"]
+        res = self.client.get(redirect_link)
+
+        self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)

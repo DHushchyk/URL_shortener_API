@@ -1,4 +1,4 @@
-from datetime import date
+import datetime
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
@@ -28,7 +28,7 @@ class LinkViewSet(
 
 
 def redirect_url_view(request, short_part):
-    queryset = Shortener.objects.filter(expiration_date__gte=date.today())
+    queryset = Shortener.objects.filter(expiration_date__gte=datetime.date.today())
     shortener = get_object_or_404(queryset, short_part=short_part)
 
     return HttpResponseRedirect(shortener.original_url)
