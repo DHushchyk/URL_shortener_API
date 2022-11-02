@@ -4,7 +4,7 @@ API service for shortening url written on DRF
 
 ## Check it out!
 
-[URL Shortening Servicee project deployed to Heroku](https://short-a.herokuapp.com/)
+[URL Shortening Servicee project deployed to Heroku](https://short-a.herokuapp.com/api/)
 
 ## Installation
 
