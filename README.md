@@ -4,7 +4,7 @@ API service for shortening url written on DRF
 
 ## Check it out!
 
-[URL Shortening Servicee project deployed to Heroku](https://url-shortener-dh.herokuapp.com/)
+[URL Shortening Servicee project deployed to Heroku](https://short-a.herokuapp.com/)
 
 ## Installation
 
@@ -28,7 +28,7 @@ python manage.py runserver
 
 
 ## Features
-* Admin panel /admin/ (need to create superuser)
+* Admin panel /admin/ (needs to create superuser)
 * Creating short urls and getting lisl of them via API /api/links/
 * Setting link's expiration date (1 day - 1 year, default: 90 days)
 * Short link redirect

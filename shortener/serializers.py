@@ -9,4 +9,10 @@ class ShortenerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Shortener
-        fields = ["id", "original_url", "short_url", "publishing_date", "expiration_date"]
+        fields = [
+            "id",
+            "original_url",
+            "short_url",
+            "publishing_date",
+            "expiration_date",
+        ]

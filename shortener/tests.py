@@ -16,10 +16,7 @@ ORIGINAL_URL_SAMPLE = "https://www.django-rest-framework.org/"
 
 
 def create_sample_link(client, url=ORIGINAL_URL_SAMPLE, expiration_date=""):
-    payload = {
-        "original_url": url,
-        "expiration_date": expiration_date
-    }
+    payload = {"original_url": url, "expiration_date": expiration_date}
 
     return client.post(LINKS_URL, payload)
 
@@ -39,8 +36,7 @@ class ShortenerAPITest(TestCase):
 
     def test_create_link_with_correct_expiration_date(self):
         res = create_sample_link(
-            self.client,
-            expiration_date=datetime.date(2023, 1, 31)
+            self.client, expiration_date=datetime.date(2023, 1, 31)
         )
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
 
@@ -48,12 +44,10 @@ class ShortenerAPITest(TestCase):
     def test_create_link_with_wrong_expiration_date(self, mock_datetime):
         mock_datetime.date.today.return_value = datetime.date(2022, 11, 11)
         res_first_date = create_sample_link(
-            self.client,
-            expiration_date=datetime.date(2022, 10, 11)
+            self.client, expiration_date=datetime.date(2022, 10, 11)
         )
         res_second_date = create_sample_link(
-            self.client,
-            expiration_date=datetime.date(2023, 11, 12)
+            self.client, expiration_date=datetime.date(2023, 11, 12)
         )
 
         self.assertEqual(res_first_date.status_code, status.HTTP_400_BAD_REQUEST)
@@ -92,8 +86,7 @@ class ShortenerAPITest(TestCase):
     def test_redirect_expired_short_link(self, mock_datetime):
         mock_datetime.date.today.return_value = datetime.date(2023, 1, 2)
         link = create_sample_link(
-            self.client,
-            expiration_date=datetime.date(2023, 1, 1)
+            self.client, expiration_date=datetime.date(2023, 1, 1)
         )
         redirect_link = link.data["short_url"]
         res = self.client.get(redirect_link)

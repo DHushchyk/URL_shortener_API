@@ -16,7 +16,7 @@ class LinkViewSet(
     mixins.CreateModelMixin,
     mixins.ListModelMixin,
     mixins.RetrieveModelMixin,
-    viewsets.GenericViewSet
+    viewsets.GenericViewSet,
 ):
     queryset = Shortener.objects.all()
     serializer_class = ShortenerSerializer

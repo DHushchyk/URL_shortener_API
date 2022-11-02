@@ -21,18 +21,16 @@ class Shortener(models.Model):
 
     def clean(self):
         if not MIN_EXPIRATION_DATE < self.expiration_date < MAX_EXPIRATION_DATE:
-            raise ValidationError({
-                "expiration_date": f"date must be in range"
-                                   f"{str(MIN_EXPIRATION_DATE)} -"
-                                   f"{MAX_EXPIRATION_DATE}."
-            })
+            raise ValidationError(
+                {
+                    "expiration_date": f"date must be in range"
+                    f"{str(MIN_EXPIRATION_DATE)} -"
+                    f"{MAX_EXPIRATION_DATE}."
+                }
+            )
 
     def save(
-        self,
-        force_insert=False,
-        force_update=False,
-        using=None,
-        update_fields=None
+        self, force_insert=False, force_update=False, using=None, update_fields=None
     ):
         self.full_clean()
         return super(Shortener, self).save(
