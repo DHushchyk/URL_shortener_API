@@ -23,8 +23,8 @@ class Shortener(models.Model):
         if not MIN_EXPIRATION_DATE < self.expiration_date < MAX_EXPIRATION_DATE:
             raise ValidationError(
                 {
-                    "expiration_date": f"date must be in range"
-                    f"{str(MIN_EXPIRATION_DATE)} -"
+                    "expiration_date": f"date must be in range "
+                    f"{str(MIN_EXPIRATION_DATE)}-"
                     f"{MAX_EXPIRATION_DATE}."
                 }
             )
