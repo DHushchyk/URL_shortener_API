@@ -19,6 +19,10 @@ class Shortener(models.Model):
     publishing_date = models.DateField(auto_now=True)
     expiration_date = models.DateField(default=default_expiration_date)
 
+    class Meta:
+        verbose_name = 'Shortened link'
+        verbose_name_plural = 'Shortened links'
+
     def __str__(self):
         return f"{self.id}: {self.original_url}"
 
