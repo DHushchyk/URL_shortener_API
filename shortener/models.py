@@ -19,6 +19,9 @@ class Shortener(models.Model):
     publishing_date = models.DateField(auto_now=True)
     expiration_date = models.DateField(default=default_expiration_date)
 
+    def __str__(self):
+        return f"{self.id}: {self.original_url}"
+
     def clean(self):
         if not MIN_EXP_DATE <= self.expiration_date < MAX_EXP_DATE:
             raise ValidationError(

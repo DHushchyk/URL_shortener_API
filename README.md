@@ -28,7 +28,7 @@ python manage.py runserver
 
 
 ## Features
-* Admin panel /admin/ (needs to create superuser)
+* Admin panel /admin/ (user: superuser, password: 0pHLx8GK)
 * Creating short urls and getting lisl of them via API /api/links/
 * Setting link's expiration date (1 day - 1 year, default: 90 days)
 * Short link redirect
