@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
-ALLOWED_HOSTS = ["127.0.0.1", "url-shortener-dh.herokuapp.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "'short-a.herokuapp.com"]
 
 
 # Application definition
