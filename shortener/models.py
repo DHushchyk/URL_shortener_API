@@ -1,7 +1,6 @@
-from django.db import models
-
 import datetime
 
+from django.db import models
 from rest_framework.exceptions import ValidationError
 
 MIN_EXP_DATE = datetime.date.today() + datetime.timedelta(days=1)

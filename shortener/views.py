@@ -5,10 +5,8 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework import viewsets, mixins
 
-
 from shortener.models import Shortener
 from shortener.serializers import ShortenerSerializer
-
 from shortener.utils import create_short_url, create_short_part
 
 

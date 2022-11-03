@@ -1,6 +1,4 @@
 from random import choice
-
-
 from string import ascii_letters, digits
 
 from django.contrib.sites.shortcuts import get_current_site
