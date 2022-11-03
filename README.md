@@ -15,8 +15,8 @@ Install SQLite and create db
 ```shell
 git clone https://github.com/DHushchyk/URL_shortener_API.git
 cd URL_shortener_API
-python3 -m venv venv
-source venv\Scripts\activate (on Windows)
+python -m venv venv
+venv\Scripts\activate (on Windows)
 source venv\bin\activate (on Mac)
 pip install -r requirements.txt
 python manage.py migrate

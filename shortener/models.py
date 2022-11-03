@@ -19,6 +19,7 @@ class Shortener(models.Model):
     expiration_date = models.DateField(default=default_expiration_date)
 
     class Meta:
+        ordering = ["id"]
         verbose_name = 'Shortened link'
         verbose_name_plural = 'Shortened links'
 
