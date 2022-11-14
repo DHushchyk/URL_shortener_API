@@ -33,4 +33,4 @@ def create_short_url(short_part, request):
 
     current_site = get_current_site(request)
 
-    return f"http://{current_site}/{short_part}"
+    return f"http://{current_site}/{short_part}/"

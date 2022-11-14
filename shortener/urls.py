@@ -9,7 +9,7 @@ router.register("links", LinkViewSet)
 
 urlpatterns = [
     path("api/", include(router.urls)),
-    path("<str:short_part>", redirect_url_view, name="redirect"),
+    path("<str:short_part>/", redirect_url_view, name="redirect"),
 ]
 
 app_name = "shortener"
